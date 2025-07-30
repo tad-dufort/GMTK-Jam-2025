@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://2h0esormvssd"]
+
+[ext_resource type="Script" uid="uid://bbd1w6xbgcte4" path="res://Enemy/enemy.gd" id="1_epr5s"]
+[ext_resource type="Texture2D" uid="uid://bjah2cj1p0aq2" path="res://Art/icon.svg" id="2_vonkd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s7bn3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vonkd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2hac7"]
+radius = 534.473
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epr5s"]
+size = Vector2(135, 131)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_epr5s")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="EnemyAnim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s7bn3")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="Detection" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_2hac7")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -1.5)
+shape = SubResource("RectangleShape2D_epr5s")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
