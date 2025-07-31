@@ -1,26 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7cmflembhjq7"]
+[gd_scene load_steps=14 format=3 uid="uid://b7cmflembhjq7"]
 
 [ext_resource type="Script" uid="uid://1x7gt1tj08a2" path="res://Player/player.gd" id="1_q3lat"]
+[ext_resource type="Texture2D" uid="uid://dp48ijdubwppx" path="res://Art/player_normal.png" id="2_8g4oa"]
 [ext_resource type="Texture2D" uid="uid://bjah2cj1p0aq2" path="res://Art/icon.svg" id="2_tok1r"]
 [ext_resource type="Script" uid="uid://bhgdymvlpblj0" path="res://Player/gun.gd" id="3_tok1r"]
 [ext_resource type="Script" uid="uid://cgb62omxq8nay" path="res://Player/shoot.gd" id="4_ddoul"]
+[ext_resource type="Texture2D" uid="uid://bi1g60agi4rfd" path="res://Art/player_normal_thingy.png" id="6_6ysni"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sweqy"]
-size = Vector2(130, 132)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6ysni"]
+radius = 45.0
+height = 138.0
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_2hs0m"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_tok1r")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
-size = Vector2(129, 132)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p7tob"]
+radius = 46.0
+height = 138.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ddoul"]
 animations = [{
@@ -33,21 +26,60 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_vlldt"]
+resource_name = "Idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1667, 0.25, 0.3333, 0.4166),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_s1rgi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j23h2"]
+_data = {
+&"Idle": SubResource("Animation_vlldt"),
+&"RESET": SubResource("Animation_s1rgi")
+}
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0j2ni"]
+diffuse_texture = ExtResource("2_8g4oa")
+normal_texture = ExtResource("6_6ysni")
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_q3lat")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_sweqy")
-
-[node name="Animation" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_2hs0m")
+position = Vector2(8, 1)
+shape = SubResource("CapsuleShape2D_6ysni")
 
 [node name="HurtboxArea" type="Area2D" parent="." groups=["Player"]]
 
 [node name="Hurtbox" type="CollisionShape2D" parent="HurtboxArea" groups=["Player"]]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_hqtel")
+position = Vector2(9, 2)
+shape = SubResource("CapsuleShape2D_p7tob")
 
 [node name="GunAnchor" type="Node2D" parent="."]
 script = ExtResource("3_tok1r")
@@ -70,5 +102,17 @@ one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_j23h2")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-19, 12)
+scale = Vector2(4, 4)
+texture = SubResource("CanvasTexture_0j2ni")
+hframes = 6
 
 [connection signal="area_entered" from="HurtboxArea" to="." method="_on_hurtbox_area_area_entered"]

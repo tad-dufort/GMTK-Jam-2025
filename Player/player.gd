@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 var health = 5
 
+func _ready() -> void:
+	$AnimationPlayer.play("Idle")
+
 func _physics_process(delta):
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")

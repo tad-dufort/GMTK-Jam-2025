@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://drwlta6k12k0s"]
+[gd_scene load_steps=7 format=3 uid="uid://drwlta6k12k0s"]
 
 [ext_resource type="PackedScene" uid="uid://2h0esormvssd" path="res://Enemy/Enemy.tscn" id="1_qjv46"]
 [ext_resource type="PackedScene" uid="uid://b7cmflembhjq7" path="res://Player/Player.tscn" id="2_25u3m"]
@@ -11,6 +11,15 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(1, 2, 1152, 1, 1153, 64
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qjv46"]
 size = Vector2(121.313, 286)
 
+[sub_resource type="Gradient" id="Gradient_qjv46"]
+offsets = PackedFloat32Array(0, 0.837662)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_25u3m"]
+gradient = SubResource("Gradient_qjv46")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Main scene" type="Node2D"]
 
 [node name="NavigationArea" type="NavigationRegion2D" parent="."]
@@ -22,9 +31,14 @@ navigation_polygon = SubResource("NavigationPolygon_r4p44")
 position = Vector2(448, 369)
 shape = SubResource("RectangleShape2D_qjv46")
 
-[node name="Player" parent="." instance=ExtResource("2_25u3m")]
-position = Vector2(102, 123)
-
 [node name="Enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_qjv46")]
 position = Vector2(1012, 319)
 target = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("2_25u3m")]
+position = Vector2(90, 90)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(757, 299)
+scale = Vector2(5.35156, 4.60156)
+texture = SubResource("GradientTexture2D_25u3m")
