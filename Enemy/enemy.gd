@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var target = CharacterBody2D
+var health = 2
 
 	
 func _physics_process(delta:float):
@@ -9,6 +10,8 @@ func _physics_process(delta:float):
 		velocity = global_position.direction_to($NavigationAgent2D.get_next_path_position()) * 100
 		move_and_slide()
 	
+	if health <= 0:
+		queue_free()
 	
 
 func _on_detection_area_body_entered(body: CharacterBody2D):
@@ -17,3 +20,8 @@ func _on_detection_area_body_entered(body: CharacterBody2D):
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
 	target = null
+
+
+func _on_hurtbox_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Bullet"):
+		health -= 1

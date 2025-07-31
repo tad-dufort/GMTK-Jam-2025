@@ -1,6 +1,6 @@
 extends CharacterBody2D
-var bullet = load("res://Player/bullet.tscn")
-var scene = bullet.instantiate()
+
+var health = 5
 
 func _physics_process(delta):
 	var input_vector = Vector2.ZERO
@@ -11,14 +11,16 @@ func _physics_process(delta):
 	velocity = input_vector * 300
 	move_and_slide()
 	
-	
-	
-	if Input.is_action_just_pressed("shoot"):
-		shoot()
-
+	#if health <= 0:
 		
-func shoot():
-	var scene = bullet.instantiate()
-	get_tree().root.add_child(scene)
-	scene.global_position = $Marker2D.global_position
-	
+
+
+func _on_hurtbox_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Enemy") and $Invincibility.is_stopped():
+		health -= 1
+		$Invincibility.start()
+		print_debug(health)
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.

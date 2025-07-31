@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://2h0esormvssd"]
+[gd_scene load_steps=7 format=3 uid="uid://2h0esormvssd"]
 
 [ext_resource type="Script" uid="uid://bbd1w6xbgcte4" path="res://Enemy/enemy.gd" id="1_epr5s"]
 [ext_resource type="Texture2D" uid="uid://bjah2cj1p0aq2" path="res://Art/icon.svg" id="2_vonkd"]
@@ -17,6 +17,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_2hac7"]
 radius = 534.473
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vonkd"]
+size = Vector2(136, 130)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epr5s"]
 size = Vector2(135, 131)
 
@@ -33,9 +36,16 @@ sprite_frames = SubResource("SpriteFrames_s7bn3")
 [node name="Detection" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_2hac7")
 
+[node name="HurtboxArea" type="Area2D" parent="." groups=["Enemy"]]
+
+[node name="Hurtbox" type="CollisionShape2D" parent="HurtboxArea" groups=["Enemy"]]
+position = Vector2(1, -2)
+shape = SubResource("RectangleShape2D_vonkd")
+
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -1.5)
 shape = SubResource("RectangleShape2D_epr5s")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="area_entered" from="HurtboxArea" to="." method="_on_hurtbox_area_area_entered"]
