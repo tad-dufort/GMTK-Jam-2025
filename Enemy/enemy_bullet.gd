@@ -1,9 +1,10 @@
 extends RigidBody2D
 
+
 var speed = 1000
 
-func _ready() -> void:
-	$BulletAnim.play("Fly")
+#func _ready() -> void:
+	#$BulletAnim.play("Fly")
 	
 func launch(MoveDirection: Vector2):
 	linear_velocity = MoveDirection * speed
@@ -16,5 +17,5 @@ func _on_hitbox_area_body_entered(body: Node2D) -> void:
 
 
 func _on_hitbox_area_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Enemy"):
+	if area.is_in_group("Player"):
 		queue_free()

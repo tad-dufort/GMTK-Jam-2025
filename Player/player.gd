@@ -20,11 +20,7 @@ func _physics_process(_delta):
 
 
 func _on_hurtbox_area_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Enemy") and $Invincibility.is_stopped():
-		health -= 1
-		$Invincibility.start()
-		print_debug(health)
-
-
-func _on_area_2d_area_entered(_area: Area2D) -> void:
-	pass
+	if area.is_in_group("Enemy") or is_in_group("enemybullet"):
+		if $Invincibility.is_stopped():
+			health -= 1
+			$Invincibility.start()

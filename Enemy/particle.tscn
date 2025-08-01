@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkad54wenqbpi"]
+
+[ext_resource type="Texture2D" uid="uid://c2x55yvcc5nm3" path="res://Art/trail_2.png" id="1_howwn"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jrll3"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[node name="particle" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color(1.5, 1, 1, 1)
+z_index = -1
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_jrll3")
+amount = 60
+texture = ExtResource("1_howwn")
+lifetime = 10.0
+speed_scale = 0.75
+gravity = Vector2(0, 0)
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+anim_speed_min = 12.0
+anim_speed_max = 12.0
