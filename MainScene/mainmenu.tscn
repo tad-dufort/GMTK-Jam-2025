@@ -1,13 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://co5tex0qy1qvm"]
+[gd_scene load_steps=4 format=3 uid="uid://co5tex0qy1qvm"]
 
 [ext_resource type="Script" uid="uid://bhvoueu1d0217" path="res://mainmenu.gd" id="1_a0mnq"]
 [ext_resource type="Texture2D" uid="uid://bjah2cj1p0aq2" path="res://Art/icon.svg" id="2_jyg1q"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_a0mnq"]
-load_path = "res://.godot/imported/start_screen.png-8e0cbf9c8fcf8b7070c05c9b27a16057.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jyg1q"]
-load_path = "res://.godot/imported/start_screen_press_very_cool.png-23467b464e1e49c7da1ff9dd51b66a6e.ctex"
+[ext_resource type="Texture2D" uid="uid://vsxytl2mqveo" path="res://Art/sigma_boy.png" id="3_jyg1q"]
 
 [node name="Mainmenu" type="CanvasLayer"]
 script = ExtResource("1_a0mnq")
@@ -33,18 +28,17 @@ texture = ExtResource("2_jyg1q")
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 86.0
-offset_top = 635.0
-offset_right = 613.0
-offset_bottom = -78.0
+offset_left = 83.0
+offset_top = 617.0
+offset_right = 471.0
+offset_bottom = -91.0
 grow_vertical = 2
 
 [node name="Play" type="TextureButton" parent="Control/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-texture_normal = SubResource("CompressedTexture2D_a0mnq")
-texture_pressed = SubResource("CompressedTexture2D_jyg1q")
+texture_normal = ExtResource("3_jyg1q")
 stretch_mode = 5
 
 [node name="Credits" type="TextureButton" parent="Control/VBoxContainer"]
@@ -56,9 +50,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -627.0
-offset_right = 619.0
-offset_bottom = 297.0
+offset_left = -140.5
+offset_right = 140.5
+offset_bottom = 67.0
 grow_horizontal = 2
 
 [connection signal="pressed" from="Control/VBoxContainer/Play" to="." method="_on_play_pressed"]

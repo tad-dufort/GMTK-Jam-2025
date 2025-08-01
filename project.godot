@@ -15,11 +15,15 @@ run/main_scene="uid://co5tex0qy1qvm"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Art/icon.svg"
 
+[autoload]
+
+Globals="*res://globals.gd"
+Player="*res://Player/Player.tscn"
+
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
 
 [dotnet]
 

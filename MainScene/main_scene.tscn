@@ -1,8 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://drwlta6k12k0s"]
+[gd_scene load_steps=14 format=3 uid="uid://drwlta6k12k0s"]
 
 [ext_resource type="Script" uid="uid://cd8vvplqh10v4" path="res://MainScene/main_scene.gd" id="1_25u3m"]
-[ext_resource type="PackedScene" uid="uid://2h0esormvssd" path="res://Enemy/Enemy.tscn" id="1_qjv46"]
-[ext_resource type="PackedScene" uid="uid://b7cmflembhjq7" path="res://Player/Player.tscn" id="2_25u3m"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_qjv46"]
 vertices = PackedVector2Array(2552.5, -1088.5, 2552.5, 3741.5, -2352.5, 3741.5, -2344, 1839.5, -2352.5, 1839.5, -2344, 1744.5, -3024.5, 1744.5, -3024.5, 839.5, -2447.5, 840, -2447.5, 839.5, -2352.5, 840, -2352.5, 839.5, -2346, 839.5, -2346, 744.5, -2352.5, 744.5, -2352.5, -1088.5)
@@ -47,9 +45,6 @@ glow_blend_mode = 0
 [node name="Main scene" type="Node2D"]
 script = ExtResource("1_25u3m")
 
-[node name="Player" parent="." instance=ExtResource("2_25u3m")]
-position = Vector2(-2211, 1222)
-
 [node name="NavigationArea" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_qjv46")
 
@@ -93,15 +88,19 @@ shape = SubResource("RectangleShape2D_l5w4b")
 position = Vector2(2480, 1341)
 shape = SubResource("RectangleShape2D_ga7gg")
 
-[node name="SpawnZone" type="CollisionShape2D" parent="."]
+[node name="Spawnzone" type="StaticBody2D" parent="."]
+
+[node name="SpawnZone" type="CollisionShape2D" parent="Spawnzone"]
 position = Vector2(100.5, 1328)
 shape = SubResource("RectangleShape2D_1m37m")
-
-[node name="Enemy" parent="." instance=ExtResource("1_qjv46")]
+disabled = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_25u3m")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-2698, 1292)
 
 [connection signal="body_entered" from="EndZone" to="." method="_on_end_zone_body_entered"]

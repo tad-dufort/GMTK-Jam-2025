@@ -3,7 +3,9 @@ extends CharacterBody2D
 @export var target = CharacterBody2D
 var health = 2
 var speed = 100
-var amount = 0
+
+
+
 
 func _ready() -> void:
 	target = null
@@ -11,8 +13,8 @@ func _ready() -> void:
 	$Explosion.hide()
 	$EnemyAnim.show()
 	$HurtboxArea.monitoring = true
-	amount += 1
-	
+
+
 func _physics_process(delta:float):
 	if target:
 		$NavigationAgent2D.target_position = target.global_position
@@ -23,7 +25,7 @@ func _physics_process(delta:float):
 	$particle/CPUParticles2D.speed_scale = particlespeed
 	
 	if health <= 0:
-		#emit_signal(dead)
+		Globals.amount -= 1
 		queue_free()
 		
 	if $AnimationPlayer.is_playing() == false:

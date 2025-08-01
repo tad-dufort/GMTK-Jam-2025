@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var health = 5
-var speed = 500
+var speed = 1000
 
 func _ready() -> void:
 	$AnimationPlayer.play("Down")
