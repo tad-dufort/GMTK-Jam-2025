@@ -8,12 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://bi1g60agi4rfd" path="res://Art/player_normal_thingy.png" id="6_6ysni"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6ysni"]
-radius = 45.0
-height = 138.0
+radius = 16.0
+height = 40.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p7tob"]
-radius = 46.0
-height = 138.0
+radius = 16.0
+height = 40.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ddoul"]
 animations = [{
@@ -78,42 +78,36 @@ _data = {
 script = ExtResource("1_q3lat")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(8, 1)
 shape = SubResource("CapsuleShape2D_6ysni")
 
 [node name="HurtboxArea" type="Area2D" parent="." groups=["Player"]]
 
 [node name="Hurtbox" type="CollisionShape2D" parent="HurtboxArea" groups=["Player"]]
-position = Vector2(9, 2)
 shape = SubResource("CapsuleShape2D_p7tob")
 
 [node name="GunAnchor" type="Node2D" parent="."]
 script = ExtResource("3_tok1r")
 
 [node name="Shoot" type="Node2D" parent="GunAnchor"]
-position = Vector2(125, 0)
+position = Vector2(39, 0)
 script = ExtResource("4_ddoul")
 
 [node name="GunSprite" type="AnimatedSprite2D" parent="GunAnchor/Shoot"]
+visible = false
 position = Vector2(-25, 0)
-scale = Vector2(0.390625, 0.390625)
 sprite_frames = SubResource("SpriteFrames_ddoul")
 
 [node name="Reload" type="Timer" parent="GunAnchor/Shoot"]
-wait_time = 0.75
+wait_time = 0.05
 one_shot = true
+autostart = true
 
 [node name="Invincibility" type="Timer" parent="."]
 one_shot = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.75, 0.75)
-position_smoothing_enabled = true
-
 [node name="Down" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-19, 12)
-scale = Vector2(4, 4)
+position = Vector2(-6, 4)
 texture = SubResource("CanvasTexture_0j2ni")
 hframes = 6
 
@@ -121,5 +115,9 @@ hframes = 6
 libraries = {
 &"": SubResource("AnimationLibrary_j23h2")
 }
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.75, 0.75)
+process_callback = 0
 
 [connection signal="area_entered" from="HurtboxArea" to="." method="_on_hurtbox_area_area_entered"]

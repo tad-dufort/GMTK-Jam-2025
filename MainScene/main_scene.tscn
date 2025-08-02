@@ -1,8 +1,21 @@
-[gd_scene load_steps=16 format=3 uid="uid://drwlta6k12k0s"]
+[gd_scene load_steps=21 format=3 uid="uid://drwlta6k12k0s"]
 
 [ext_resource type="Script" uid="uid://cd8vvplqh10v4" path="res://MainScene/main_scene.gd" id="1_25u3m"]
 [ext_resource type="PackedScene" uid="uid://2h0esormvssd" path="res://Enemy/Enemy.tscn" id="1_qjv46"]
-[ext_resource type="PackedScene" uid="uid://b7cmflembhjq7" path="res://Player/Player.tscn" id="2_25u3m"]
+[ext_resource type="PackedScene" uid="uid://b7cmflembhjq7" path="res://Player/player.tscn" id="2_25u3m"]
+[ext_resource type="Shader" uid="uid://db0apa4f1d44i" path="res://CRT.gdshader" id="4_r4p44"]
+[ext_resource type="Texture2D" uid="uid://b3ko4kbuf6kbo" path="res://Art/im_john_and_im_doeing_it_im_doeing_it_so_hard.png" id="5_ga7gg"]
+[ext_resource type="Texture2D" uid="uid://c2x55yvcc5nm3" path="res://Art/trail_2.png" id="7_1lkik"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ga7gg"]
+shader = ExtResource("4_r4p44")
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/scan_line_amount = 0.163
+shader_parameter/warp_amount = 0.185
+shader_parameter/vignette_amount = 0.689
+shader_parameter/vignette_intensity = 0.3
+shader_parameter/grille_amount = 0.019
+shader_parameter/brightness_boost = 1.284
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_qjv46"]
 vertices = PackedVector2Array(2552.5, -1088.5, 2552.5, 3741.5, -2352.5, 3741.5, -2344, 1839.5, -2352.5, 1839.5, -2344, 1744.5, -3024.5, 1744.5, -3024.5, 839.5, -2447.5, 840, -2447.5, 839.5, -2352.5, 840, -2352.5, 839.5, -2346, 839.5, -2346, 744.5, -2352.5, 744.5, -2352.5, -1088.5)
@@ -33,59 +46,78 @@ size = Vector2(750, 75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l5w4b"]
 size = Vector2(750, 75)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ga7gg"]
-size = Vector2(150, 750)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1m37m"]
-size = Vector2(4905, 4834)
-
 [sub_resource type="Environment" id="Environment_25u3m"]
 background_mode = 3
 glow_enabled = true
 glow_blend_mode = 0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1m37m"]
+size = Vector2(4905, 4834)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ga7gg"]
+size = Vector2(150, 750)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_25os6"]
+
 [node name="Main scene" type="Node2D"]
 script = ExtResource("1_25u3m")
 
-[node name="Player" parent="." instance=ExtResource("2_25u3m")]
-position = Vector2(-2211, 1222)
+[node name="CRT Effect" type="CanvasLayer" parent="."]
 
-[node name="NavigationArea" type="NavigationRegion2D" parent="."]
+[node name="ColorRect" type="ColorRect" parent="CRT Effect"]
+material = SubResource("ShaderMaterial_ga7gg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Map" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_qjv46")
 
-[node name="Walls" type="StaticBody2D" parent="NavigationArea" groups=["Walls"]]
+[node name="Walls" type="StaticBody2D" parent="Map" groups=["Walls"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationArea/Walls" groups=["Walls"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls" groups=["Walls"]]
 position = Vector2(65, -1136)
 shape = SubResource("RectangleShape2D_qjv46")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="NavigationArea/Walls"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Map/Walls"]
 position = Vector2(-2400, 2829)
 shape = SubResource("RectangleShape2D_25u3m")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="NavigationArea/Walls"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Map/Walls"]
 position = Vector2(65, 3789)
 shape = SubResource("RectangleShape2D_r4p44")
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="NavigationArea/Walls"]
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Map/Walls"]
 position = Vector2(-2400, -170)
 shape = SubResource("RectangleShape2D_25os6")
 
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="NavigationArea/Walls"]
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Map/Walls"]
 position = Vector2(2600, 1324)
 shape = SubResource("RectangleShape2D_1lkik")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="NavigationArea/Walls"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Map/Walls"]
 position = Vector2(-3072, 1329)
 shape = SubResource("RectangleShape2D_30i71")
 
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="NavigationArea/Walls"]
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Map/Walls"]
 position = Vector2(-2731, 792)
 shape = SubResource("RectangleShape2D_ji2x1")
 
-[node name="CollisionShape2D8" type="CollisionShape2D" parent="NavigationArea/Walls"]
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Map/Walls"]
 position = Vector2(-2729, 1792)
 shape = SubResource("RectangleShape2D_l5w4b")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_25u3m")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="SpawnZone" type="CollisionShape2D" parent="."]
+position = Vector2(100.5, 1328)
+shape = SubResource("RectangleShape2D_1m37m")
 
 [node name="EndZone" type="Area2D" parent="."]
 
@@ -93,15 +125,37 @@ shape = SubResource("RectangleShape2D_l5w4b")
 position = Vector2(2480, 1341)
 shape = SubResource("RectangleShape2D_ga7gg")
 
-[node name="SpawnZone" type="CollisionShape2D" parent="."]
-position = Vector2(100.5, 1328)
-shape = SubResource("RectangleShape2D_1m37m")
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+
+[node name="EnemyParticleTexture" type="TextureRect" parent="BackBufferCopy"]
+offset_left = -1722.0
+offset_top = 1006.0
+offset_right = -1306.0
+offset_bottom = 1240.0
+texture = ExtResource("5_ga7gg")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="BackBufferCopy/EnemyParticleTexture"]
+modulate = Color(1.5, 1, 1, 1)
+z_index = -1
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_25os6")
+position = Vector2(-121, 229)
+rotation = -3.14159
+scale = Vector2(0.566258, 0.0820355)
+amount = 60
+texture = ExtResource("7_1lkik")
+lifetime = 10.0
+speed_scale = 0.75
+gravity = Vector2(0, 0)
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+anim_speed_min = 12.0
+anim_speed_max = 12.0
+
+[node name="Player" parent="." instance=ExtResource("2_25u3m")]
+position = Vector2(-1794, 1142)
 
 [node name="Enemy" parent="." instance=ExtResource("1_qjv46")]
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_25u3m")
+position = Vector2(-1291, 1139)
 
 [connection signal="body_entered" from="EndZone" to="." method="_on_end_zone_body_entered"]

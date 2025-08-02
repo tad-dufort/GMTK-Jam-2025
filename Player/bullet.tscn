@@ -40,8 +40,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ki1tx"]
-radius = 14.6154
-height = 56.9231
+radius = 1.15346
+height = 4.61539
 
 [node name="bullet" type="RigidBody2D"]
 gravity_scale = 0.0
@@ -50,9 +50,7 @@ script = ExtResource("1_tqmay")
 
 [node name="BulletAnim" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(5, -5.00001)
 rotation = 3.14159
-scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_tqmay")
 animation = &"Fly"
 frame = 2
@@ -62,7 +60,7 @@ frame_progress = 0.496992
 scale = Vector2(1.3, 1.3)
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitboxArea" groups=["Bullet"]]
-position = Vector2(-5.38461, 1.53846)
+position = Vector2(-0.769, 0.385)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ki1tx")
 

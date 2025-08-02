@@ -19,8 +19,8 @@ func _physics_process(delta:float):
 		velocity = global_position.direction_to($NavigationAgent2D.get_next_path_position()) * speed
 		move_and_slide()
 	
-	var particlespeed = (speed/100)*0.5
-	$particle/CPUParticles2D.speed_scale = particlespeed
+	#var particlespeed = (speed/100)*0.5
+	#$particle/CPUParticles2D.speed_scale = particlespeed
 	
 	if health <= 0:
 		#emit_signal(dead)
