@@ -1,9 +1,95 @@
-[gd_scene load_steps=2 format=3 uid="uid://dcq6cenn02lm7"]
+[gd_scene load_steps=17 format=3 uid="uid://dcq6cenn02lm7"]
 
 [ext_resource type="Script" uid="uid://dwc1r034kgppv" path="res://Menus/died.gd" id="1_cer7p"]
+[ext_resource type="Texture2D" uid="uid://cpajag2j5w4lc" path="res://Art/im_john_and_im_doeing_it_im_doeing_it_so_hard_lines_up_now.png" id="2_bhu3n"]
+[ext_resource type="Texture2D" uid="uid://g6v3qp8h3ngc" path="res://Art/retreat.png" id="2_viow1"]
+[ext_resource type="Texture2D" uid="uid://d33n5f1qn3wkm" path="res://Art/retreat_pressed.png" id="3_5cvtg"]
+[ext_resource type="Script" uid="uid://6ibijlphwgjw" path="res://Menus/backg.gd" id="3_or6g5"]
+[ext_resource type="Texture2D" uid="uid://rstaxtkw0ap" path="res://Art/dead.png" id="4_or6g5"]
+[ext_resource type="AudioStream" uid="uid://bxpchteoc7s5t" path="res://Music + Sfx/Game Over1.wav" id="7_3d3wa"]
+[ext_resource type="AudioStream" uid="uid://djjl7ifk16xue" path="res://Music + Sfx/Credits2.wav" id="8_ttxym"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3d3wa"]
+atlas = ExtResource("4_or6g5")
+region = Rect2(0, 0, 416, 416)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttxym"]
+atlas = ExtResource("4_or6g5")
+region = Rect2(416, 0, 416, 416)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx2u4"]
+atlas = ExtResource("4_or6g5")
+region = Rect2(832, 0, 416, 416)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0ijd"]
+atlas = ExtResource("4_or6g5")
+region = Rect2(1248, 0, 416, 416)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_injfa"]
+atlas = ExtResource("4_or6g5")
+region = Rect2(1664, 0, 416, 416)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5p6qm"]
+atlas = ExtResource("4_or6g5")
+region = Rect2(2080, 0, 416, 416)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr8ne"]
+atlas = ExtResource("4_or6g5")
+region = Rect2(2496, 0, 416, 416)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p75tx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3d3wa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttxym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx2u4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0ijd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_injfa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5p6qm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sr8ne")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 3.0
+}]
 
 [node name="Died" type="CanvasLayer"]
 script = ExtResource("1_cer7p")
+
+[node name="backg2" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1080.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bhu3n")
+script = ExtResource("3_or6g5")
+
+[node name="backg" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bhu3n")
+script = ExtResource("3_or6g5")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -14,6 +100,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
+texture_filter = 1
+position = Vector2(950, 450)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_p75tx")
+animation = &"dead"
+frame = 6
+frame_progress = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
@@ -22,15 +115,29 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -284.0
-offset_top = -377.0
-offset_right = 284.0
-offset_bottom = -127.0
+offset_left = -199.0
+offset_top = -250.0
+offset_right = 199.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Back" type="TextureButton" parent="Control/VBoxContainer"]
+z_index = 1
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
+texture_normal = ExtResource("2_viow1")
+texture_pressed = ExtResource("3_5cvtg")
+stretch_mode = 6
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_3d3wa")
+volume_db = -5.0
+autoplay = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ttxym")
+volume_db = -5.0
+autoplay = true
 
 [connection signal="pressed" from="Control/VBoxContainer/Back" to="." method="_on_back_pressed"]

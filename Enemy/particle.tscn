@@ -45,7 +45,7 @@ texture_filter = 1
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_snnxy")
 autoplay = "default"
-frame_progress = 0.9422
+frame_progress = 0.446906
 
 [node name="particlearea" type="Area2D" parent="." groups=["enemybullet"]]
 
@@ -54,7 +54,7 @@ position = Vector2(-2, 22)
 shape = SubResource("CircleShape2D_hmx3w")
 
 [node name="despawn" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 15.0
 one_shot = true
 
 [connection signal="body_entered" from="particlearea" to="." method="_on_particlearea_body_entered"]

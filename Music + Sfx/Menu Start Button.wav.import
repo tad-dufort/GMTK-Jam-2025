@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c3dvf7il4q23f"
+path="res://.godot/imported/Menu Start Button.wav-8ba337724504ea09abad3b7f4f4f424e.sample"
+
+[deps]
+
+source_file="res://Music + Sfx/Menu Start Button.wav"
+dest_files=["res://.godot/imported/Menu Start Button.wav-8ba337724504ea09abad3b7f4f4f424e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=3 uid="uid://bjw4n1a8e6pcc"]
 
 [ext_resource type="Script" uid="uid://dhhgvwx3su8gu" path="res://Enemy/bullet_enemy.gd" id="1_xafvn"]
-[ext_resource type="Texture2D" uid="uid://bnl7pgwdmpw62" path="res://Art/enemy.png" id="2_ek85v"]
+[ext_resource type="Texture2D" uid="uid://bl36o7s5cexqf" path="res://Art/ranged_enemy.png" id="2_6idfc"]
 [ext_resource type="Texture2D" uid="uid://cwksic16jut15" path="res://Art/deathexplosion.png" id="3_6idfc"]
 [ext_resource type="Script" uid="uid://m575ykd8cker" path="res://Enemy/gunlocation.gd" id="4_6idfc"]
-[ext_resource type="PackedScene" uid="uid://bkad54wenqbpi" path="res://Enemy/particle.tscn" id="5_6idfc"]
+[ext_resource type="AudioStream" uid="uid://blwqclmk6r5cx" path="res://Music + Sfx/Enemy Movement Ab1(Less Detuned).wav" id="5_6idfc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvqgy"]
 radius = 1000.0
@@ -44,7 +44,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_6idfc"]
 resource_name = "new_animation"
-length = 0.371
+length = 0.5
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -53,10 +53,10 @@ tracks/0/path = NodePath("EnemyAnim:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 }
 
 [sub_resource type="Animation" id="Animation_hutav"]
@@ -99,8 +99,8 @@ script = ExtResource("1_xafvn")
 [node name="EnemyAnim" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(5.5, 5.5)
-texture = ExtResource("2_ek85v")
-hframes = 12
+texture = ExtResource("2_6idfc")
+hframes = 16
 
 [node name="Explosion" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
@@ -136,10 +136,14 @@ wait_time = 1.5
 one_shot = true
 autostart = true
 
-[node name="particle" parent="." instance=ExtResource("5_6idfc")]
-
 [node name="Particletime" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_6idfc")
+volume_db = -15.0
+autoplay = true
+max_polyphony = 5
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

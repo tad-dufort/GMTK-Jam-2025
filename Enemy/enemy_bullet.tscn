@@ -66,7 +66,7 @@ texture_filter = 1
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_1ig04")
 animation = &"fly"
-frame_progress = 0.196005
+frame_progress = 0.703521
 
 [node name="HitboxArea" type="Area2D" parent="." groups=["enemybullet"]]
 

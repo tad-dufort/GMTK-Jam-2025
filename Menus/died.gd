@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+func _ready() -> void:
+	$Control/AnimatedSprite2D.play("dead")
 
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://Menus/mainmenu.tscn")

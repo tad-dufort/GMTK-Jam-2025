@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 
 @export var target = CharacterBody2D
-var health = 3
-var speed = 125
+@onready var health = 3
+@onready var speed = 150
 @onready var p_scene = preload("res://Enemy/particle.tscn")
 var time = 0.5
 
@@ -21,7 +21,7 @@ func _ready() -> void:
 	$Explosion.hide()
 	$EnemyAnim.show()
 	$HurtboxArea.monitoring = true
-
+	$AudioStreamPlayer2D
 
 func _physics_process(delta:float):
 	if target:

@@ -2,12 +2,12 @@ extends CharacterBody2D
 
 @export var target = CharacterBody2D
 var health = 2
-var speed = 125
+var speed = 300
 var chase = false
 var bullets = 1
 var cd = 1.5
-var p_scene = preload("res://Enemy/particle.tscn")
-var time = 0.5
+var p_scene = preload("res://Enemy/gunparticle.tscn")
+var time = 0.25
 
 
 func particle():
@@ -48,7 +48,9 @@ func _physics_process(delta:float):
 	if chase == true and $reload.is_stopped():
 		$anchor/gunlocation.shoot(bullets)
 		$reload.start()
-
+		speed /= 2
+		await get_tree().create_timer(0.5).timeout
+		speed *= 2
 
 
 func _on_detection_area_body_entered(body: CharacterBody2D):
