@@ -15,12 +15,20 @@ func _physics_process(_delta):
 	velocity = input_vector * speed
 	move_and_slide()
 	
+	if health <= 0:
+		get_tree().change_scene_to_file("res://Menus/died.tscn")
 
-	
+
 
 
 func _on_hurtbox_area_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Enemy") or is_in_group("enemybullet"):
+	if area.is_in_group("Enemy"):
 		if $Invincibility.is_stopped():
 			health -= 1
+			$Invincibility.start()
+		
+	elif area.is_in_group("enemybullet"):
+		if $Invincibility.is_stopped():
+			health -= 1
+			print_debug(health)
 			$Invincibility.start()

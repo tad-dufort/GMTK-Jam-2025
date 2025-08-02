@@ -1,29 +1,72 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5823x1ikkhii"]
+[gd_scene load_steps=11 format=3 uid="uid://c5823x1ikkhii"]
 
 [ext_resource type="Script" uid="uid://dio7gcqntw5re" path="res://Enemy/enemy_bullet.gd" id="1_ijxx3"]
-[ext_resource type="Texture2D" uid="uid://bjah2cj1p0aq2" path="res://Art/icon.svg" id="2_4rn1g"]
+[ext_resource type="Texture2D" uid="uid://2q221qpxsnoq" path="res://Art/enemy_bullet_animated.png" id="2_ijxx3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rn1g"]
+atlas = ExtResource("2_ijxx3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ig04"]
+atlas = ExtResource("2_ijxx3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_empb5"]
+atlas = ExtResource("2_ijxx3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxg1b"]
+atlas = ExtResource("2_ijxx3")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5muw"]
+atlas = ExtResource("2_ijxx3")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afo0p"]
+atlas = ExtResource("2_ijxx3")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1ig04"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_4rn1g")
+"texture": SubResource("AtlasTexture_4rn1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ig04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_empb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxg1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5muw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afo0p")
 }],
 "loop": true,
-"name": &"default",
-"speed": 5.0
+"name": &"fly",
+"speed": 12.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ijxx3"]
-radius = 17.0294
+radius = 28.0179
 
 [node name="EnemyBullet" type="RigidBody2D"]
 gravity_scale = 0.0
 script = ExtResource("1_ijxx3")
 
 [node name="BulletAnim" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
+modulate = Color(1.5, 1, 1, 1)
+texture_filter = 1
+scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_1ig04")
+animation = &"fly"
+frame_progress = 0.196005
 
 [node name="HitboxArea" type="Area2D" parent="." groups=["enemybullet"]]
 

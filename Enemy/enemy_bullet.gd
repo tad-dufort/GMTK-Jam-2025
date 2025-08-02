@@ -1,10 +1,10 @@
 extends RigidBody2D
 
 
-var speed = 1000
+var speed = 500
 
-#func _ready() -> void:
-	#$BulletAnim.play("Fly")
+func _ready() -> void:
+	$BulletAnim.play("fly")
 	
 func launch(MoveDirection: Vector2):
 	linear_velocity = MoveDirection * speed

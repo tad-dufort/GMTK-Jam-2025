@@ -6,9 +6,10 @@ var default = Vector2.RIGHT
 
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("shoot") and $Reload.is_stopped():
-		shoot()
-		$Reload.start()
+	if Input.is_action_pressed("shoot"):
+		if $Reload.is_stopped():
+			shoot()
+			$Reload.start()
 
 func shoot():
 	var projectile = bullet.instantiate()

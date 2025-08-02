@@ -1,26 +1,21 @@
-[gd_scene load_steps=14 format=3 uid="uid://drwlta6k12k0s"]
+[gd_scene load_steps=17 format=3 uid="uid://drwlta6k12k0s"]
 
 [ext_resource type="Script" uid="uid://cd8vvplqh10v4" path="res://MainScene/main_scene.gd" id="1_25u3m"]
+[ext_resource type="Texture2D" uid="uid://bjah2cj1p0aq2" path="res://Art/icon.svg" id="2_qjv46"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_qjv46"]
-vertices = PackedVector2Array(2552.5, -1088.5, 2552.5, 3741.5, -2352.5, 3741.5, -2344, 1839.5, -2352.5, 1839.5, -2344, 1744.5, -3024.5, 1744.5, -3024.5, 839.5, -2447.5, 840, -2447.5, 839.5, -2352.5, 840, -2352.5, 839.5, -2346, 839.5, -2346, 744.5, -2352.5, 744.5, -2352.5, -1088.5)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 4, 3), PackedInt32Array(0, 3, 5), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(7, 9, 8), PackedInt32Array(5, 8, 10), PackedInt32Array(10, 11, 12, 5), PackedInt32Array(13, 14, 15, 0), PackedInt32Array(13, 0, 5, 12)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-2423, -1159, 2630, -1160, 2628, 3811, -2380, 3783, -2387, 1785, -3082, 1787, -3085, 777, -2392, 789)])
+vertices = PackedVector2Array(3339.2, -1088.5, 3342.8, -257.5, 2628, -257.5, 47.5, -1088.5, 2628, -256, 2552.5, -256, 47.5, 334, 2552.5, 1277.5, -2352.5, 1277.5, -47.5, 334, -2352.5, -162.5, -2352, -162.5, -47.5, -1088.5, -2352, -257.5, -3099.5, -257.5, -3099.5, -1087.5, -2352, -1087.5, -2352, -1088.5)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 4, 5, 3), PackedInt32Array(6, 3, 5, 7), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(9, 8, 10, 11), PackedInt32Array(12, 9, 11, 13), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(12, 13, 16), PackedInt32Array(12, 16, 17)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-3155, -1136, 2630, -1160, 3349, -1135, 3353, -212, 2605, -204, 2598, 1331, -2406, 1351, -2393, -219, -3149, -219)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qjv46"]
-size = Vector2(5000, 75)
+size = Vector2(5013, 75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_25u3m"]
-size = Vector2(75, 2000)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r4p44"]
-size = Vector2(5000, 75)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_25os6"]
-size = Vector2(75, 2000)
+size = Vector2(75, 1500)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1lkik"]
-size = Vector2(75, 5000)
+size = Vector2(75, 1606)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_30i71"]
 size = Vector2(75, 1000)
@@ -31,11 +26,23 @@ size = Vector2(750, 75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l5w4b"]
 size = Vector2(750, 75)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ga7gg"]
-size = Vector2(150, 750)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyr3e"]
+size = Vector2(75, 1500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r4p44"]
+size = Vector2(5000, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_25os6"]
+size = Vector2(750, 75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1m37m"]
-size = Vector2(4905, 4834)
+size = Vector2(750, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ga7gg"]
+size = Vector2(150, 982)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ltmk"]
+size = Vector2(4897, 2350)
 
 [sub_resource type="Environment" id="Environment_25u3m"]
 background_mode = 3
@@ -51,48 +58,56 @@ navigation_polygon = SubResource("NavigationPolygon_qjv46")
 [node name="Walls" type="StaticBody2D" parent="NavigationArea" groups=["Walls"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationArea/Walls" groups=["Walls"]]
-position = Vector2(65, -1136)
+position = Vector2(134.5, -1135)
 shape = SubResource("RectangleShape2D_qjv46")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="NavigationArea/Walls"]
-position = Vector2(-2400, 2829)
+position = Vector2(-2400, 559)
 shape = SubResource("RectangleShape2D_25u3m")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="NavigationArea/Walls"]
-position = Vector2(65, 3789)
-shape = SubResource("RectangleShape2D_r4p44")
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="NavigationArea/Walls"]
-position = Vector2(-2400, -170)
-shape = SubResource("RectangleShape2D_25os6")
-
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="NavigationArea/Walls"]
-position = Vector2(2600, 1324)
+position = Vector2(2600, 557)
 shape = SubResource("RectangleShape2D_1lkik")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="NavigationArea/Walls"]
-position = Vector2(-3072, 1329)
+position = Vector2(-3147, -673)
 shape = SubResource("RectangleShape2D_30i71")
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="NavigationArea/Walls"]
-position = Vector2(-2731, 792)
+position = Vector2(-2737, -1135)
 shape = SubResource("RectangleShape2D_ji2x1")
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="NavigationArea/Walls"]
-position = Vector2(-2729, 1792)
+position = Vector2(-2737, -210)
 shape = SubResource("RectangleShape2D_l5w4b")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="NavigationArea/Walls"]
+position = Vector2(0, -426)
+shape = SubResource("RectangleShape2D_fyr3e")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="NavigationArea/Walls"]
+position = Vector2(65, 1325)
+shape = SubResource("RectangleShape2D_r4p44")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="NavigationArea/Walls"]
+position = Vector2(3013, -1136)
+shape = SubResource("RectangleShape2D_25os6")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="NavigationArea/Walls"]
+position = Vector2(3013, -210)
+shape = SubResource("RectangleShape2D_1m37m")
 
 [node name="EndZone" type="Area2D" parent="."]
 
 [node name="Endbit" type="CollisionShape2D" parent="EndZone"]
-position = Vector2(2480, 1341)
+position = Vector2(3147, -657)
 shape = SubResource("RectangleShape2D_ga7gg")
 
 [node name="Spawnzone" type="StaticBody2D" parent="."]
 
 [node name="SpawnZone" type="CollisionShape2D" parent="Spawnzone"]
-position = Vector2(100.5, 1328)
-shape = SubResource("RectangleShape2D_1m37m")
+position = Vector2(102.5, 101)
+shape = SubResource("RectangleShape2D_5ltmk")
 disabled = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -101,6 +116,31 @@ disabled = true
 environment = SubResource("Environment_25u3m")
 
 [node name="Node2D" type="Node2D" parent="."]
-position = Vector2(-2698, 1292)
+position = Vector2(-2692, -673)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.999999, -422)
+scale = Vector2(0.734375, 11.6406)
+texture = ExtResource("2_qjv46")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(3000, -201.5)
+scale = Vector2(6.58594, 0.664064)
+texture = ExtResource("2_qjv46")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(3000, -1121)
+scale = Vector2(6.58594, 0.664064)
+texture = ExtResource("2_qjv46")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(-3000, -201.5)
+scale = Vector2(6.58594, 0.664064)
+texture = ExtResource("2_qjv46")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(-3000, -1121)
+scale = Vector2(6.58594, 0.664064)
+texture = ExtResource("2_qjv46")
 
 [connection signal="body_entered" from="EndZone" to="." method="_on_end_zone_body_entered"]

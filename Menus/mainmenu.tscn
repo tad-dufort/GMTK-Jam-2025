@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://co5tex0qy1qvm"]
 
-[ext_resource type="Script" uid="uid://bhvoueu1d0217" path="res://mainmenu.gd" id="1_a0mnq"]
-[ext_resource type="Texture2D" uid="uid://bjah2cj1p0aq2" path="res://Art/icon.svg" id="2_jyg1q"]
-[ext_resource type="Texture2D" uid="uid://vsxytl2mqveo" path="res://Art/sigma_boy.png" id="3_jyg1q"]
+[ext_resource type="Script" uid="uid://bhvoueu1d0217" path="res://Menus/mainmenu.gd" id="1_s1n6v"]
+[ext_resource type="Texture2D" uid="uid://bjah2cj1p0aq2" path="res://Art/icon.svg" id="2_upfa2"]
+[ext_resource type="Texture2D" uid="uid://vsxytl2mqveo" path="res://Art/sigma_boy.png" id="3_agqp0"]
 
 [node name="Mainmenu" type="CanvasLayer"]
-script = ExtResource("1_a0mnq")
+script = ExtResource("1_s1n6v")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -22,7 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_jyg1q")
+texture = ExtResource("2_upfa2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
@@ -38,7 +38,7 @@ grow_vertical = 2
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-texture_normal = ExtResource("3_jyg1q")
+texture_normal = ExtResource("3_agqp0")
 stretch_mode = 5
 
 [node name="Credits" type="TextureButton" parent="Control/VBoxContainer"]

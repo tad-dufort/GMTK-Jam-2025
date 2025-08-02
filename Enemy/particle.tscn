@@ -1,26 +1,60 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkad54wenqbpi"]
+[gd_scene load_steps=8 format=3 uid="uid://bkad54wenqbpi"]
 
 [ext_resource type="Texture2D" uid="uid://c2x55yvcc5nm3" path="res://Art/trail_2.png" id="1_howwn"]
+[ext_resource type="Script" uid="uid://c62ks0bkt2qsw" path="res://Enemy/particle.gd" id="1_jrll3"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jrll3"]
-particles_animation = true
-particles_anim_h_frames = 3
-particles_anim_v_frames = 1
-particles_anim_loop = true
+[sub_resource type="AtlasTexture" id="AtlasTexture_howwn"]
+atlas = ExtResource("1_howwn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrll3"]
+atlas = ExtResource("1_howwn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucfnc"]
+atlas = ExtResource("1_howwn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_snnxy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_howwn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrll3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucfnc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hmx3w"]
+radius = 52.0384
 
 [node name="particle" type="Node2D"]
+script = ExtResource("1_jrll3")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(1.5, 1, 1, 1)
 z_index = -1
 texture_filter = 1
-material = SubResource("CanvasItemMaterial_jrll3")
-amount = 60
-texture = ExtResource("1_howwn")
-lifetime = 10.0
-speed_scale = 0.75
-gravity = Vector2(0, 0)
-scale_amount_min = 4.0
-scale_amount_max = 4.0
-anim_speed_min = 12.0
-anim_speed_max = 12.0
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_snnxy")
+autoplay = "default"
+frame_progress = 0.9422
+
+[node name="particlearea" type="Area2D" parent="." groups=["enemybullet"]]
+
+[node name="zone" type="CollisionShape2D" parent="particlearea" groups=["enemybullet"]]
+position = Vector2(-2, 22)
+shape = SubResource("CircleShape2D_hmx3w")
+
+[node name="despawn" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="body_entered" from="particlearea" to="." method="_on_particlearea_body_entered"]

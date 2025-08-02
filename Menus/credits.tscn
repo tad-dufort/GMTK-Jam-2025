@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://dstjfmymnpvy1"]
+
+[ext_resource type="Script" uid="uid://dqkbc5karwd8r" path="res://Menus/credits.gd" id="1_utxdh"]
+[ext_resource type="Texture2D" uid="uid://cpajag2j5w4lc" path="res://Art/im_john_and_im_doeing_it_im_doeing_it_so_hard_lines_up_now.png" id="1_yccri"]
+[ext_resource type="Script" uid="uid://6ibijlphwgjw" path="res://Menus/backg.gd" id="2_utxdh"]
+
+[node name="Credits" type="CanvasLayer"]
+script = ExtResource("1_utxdh")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -282.0
+offset_top = -325.0
+offset_right = 283.0
+offset_bottom = -113.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Back" type="TextureButton" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Backg2" type="TextureRect" parent="Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yccri")
+script = ExtResource("2_utxdh")
+
+[node name="Backg" type="TextureRect" parent="Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1080.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yccri")
+script = ExtResource("2_utxdh")
+
+[connection signal="pressed" from="Control/VBoxContainer/Back" to="." method="_on_back_pressed"]

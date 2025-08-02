@@ -1,11 +1,19 @@
 extends CharacterBody2D
 
+
 @export var target = CharacterBody2D
-var health = 2
-var speed = 100
+var health = 3
+var speed = 125
+@onready var p_scene = preload("res://Enemy/particle.tscn")
+var time = 0.5
 
 
 
+
+func particle():
+	var particles = p_scene.instantiate()
+	add_child(particles)
+	
 
 func _ready() -> void:
 	target = null
@@ -21,15 +29,20 @@ func _physics_process(delta:float):
 		velocity = global_position.direction_to($NavigationAgent2D.get_next_path_position()) * speed
 		move_and_slide()
 	
-	var particlespeed = (speed/100)*0.5
-	$particle/CPUParticles2D.speed_scale = particlespeed
+	
+	
+	$Particletime.set_wait_time(time)
+	
+	if $Particletime.is_stopped():
+		particle()
+		$Particletime.start()
+		
 	
 	if health <= 0:
 		Globals.amount -= 1
 		queue_free()
 		
-	if $AnimationPlayer.is_playing() == false:
-		health = 0
+
 	
 func _on_detection_area_body_entered(body: CharacterBody2D):
 	if body.is_in_group("Player"):
@@ -51,3 +64,7 @@ func _on_hurtbox_area_area_entered(area: Area2D) -> void:
 		speed = 0
 		$HurtboxArea.monitoring = false
 	
+
+
+func _on_animation_player_animation_finished(explode: StringName) -> void:
+	health = 0
