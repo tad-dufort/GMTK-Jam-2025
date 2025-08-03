@@ -20,6 +20,7 @@ func _process(_delta: float) -> void:
 	
 func shoot(amount):
 	for i in range (0, amount):
+		$AudioStreamPlayer.play()
 		var spread = Globals.spread
 		var projectile = bullet.instantiate()
 		get_tree().root.add_child(projectile)

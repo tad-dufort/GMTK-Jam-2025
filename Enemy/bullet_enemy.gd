@@ -2,12 +2,12 @@ extends CharacterBody2D
 
 @export var target = CharacterBody2D
 var health = 2
-var speed = 300
+var speed = 400
 var chase = false
 var bullets = 1
 var cd = 1.5
 var p_scene = preload("res://Enemy/gunparticle.tscn")
-var time = 0.25
+var time = 0.15
 
 
 func particle():

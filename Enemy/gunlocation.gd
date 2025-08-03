@@ -6,6 +6,7 @@ var default = Vector2.RIGHT
 
 func shoot(amount):
 	for i in range(0, amount):
+		$AudioStreamPlayer2D2.play()
 		var bullet = bulletS.instantiate()
 		get_tree().root.add_child(bullet)
 		bullet.global_position = global_position
