@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dcq6cenn02lm7"]
+[gd_scene load_steps=18 format=3 uid="uid://dcq6cenn02lm7"]
 
 [ext_resource type="Script" uid="uid://dwc1r034kgppv" path="res://Menus/died.gd" id="1_cer7p"]
 [ext_resource type="Texture2D" uid="uid://cpajag2j5w4lc" path="res://Art/im_john_and_im_doeing_it_im_doeing_it_so_hard_lines_up_now.png" id="2_bhu3n"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://rstaxtkw0ap" path="res://Art/dead.png" id="4_or6g5"]
 [ext_resource type="AudioStream" uid="uid://bxpchteoc7s5t" path="res://Music + Sfx/Game Over1.wav" id="7_3d3wa"]
 [ext_resource type="AudioStream" uid="uid://djjl7ifk16xue" path="res://Music + Sfx/Credits2.wav" id="8_ttxym"]
+[ext_resource type="AudioStream" uid="uid://c3dvf7il4q23f" path="res://Music + Sfx/Menu Start Button.wav" id="9_dx2u4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3d3wa"]
 atlas = ExtResource("4_or6g5")
@@ -139,5 +140,9 @@ autoplay = true
 stream = ExtResource("8_ttxym")
 volume_db = -5.0
 autoplay = true
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_dx2u4")
+volume_db = -5.0
 
 [connection signal="pressed" from="Control/VBoxContainer/Back" to="." method="_on_back_pressed"]

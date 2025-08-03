@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=4 uid="uid://drwlta6k12k0s"]
+[gd_scene load_steps=28 format=4 uid="uid://drwlta6k12k0s"]
 
 [ext_resource type="Script" uid="uid://cd8vvplqh10v4" path="res://MainScene/main_scene.gd" id="1_25u3m"]
 [ext_resource type="PackedScene" uid="uid://b7cmflembhjq7" path="res://Player/Player.tscn" id="3_25u3m"]
 [ext_resource type="Texture2D" uid="uid://67jg0mb8p1d1" path="res://Art/walls.png" id="3_r4p44"]
 [ext_resource type="Texture2D" uid="uid://cj8knxqta7dhd" path="res://Art/floor_tiles_sigma-sheet.png" id="4_ga7gg"]
 [ext_resource type="Texture2D" uid="uid://b7x6nb5hyhrw2" path="res://Art/firewall.png" id="5_ga7gg"]
+[ext_resource type="AudioStream" uid="uid://dp2c86ddc5fuu" path="res://Music + Sfx/Full Soundtrack.mp3" id="6_25os6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_qjv46"]
 vertices = PackedVector2Array(622.141, -982, 627.461, -403, -227, -403, -1031, -982, -1031, 460, -230.5, -304, -227, -304, -230.5, 1022, -2173.5, 1022, -1378, 460, -2173.5, -375, -1378, -982, -4152, -982, -2352, -379, -2352, -375, -4152, -379)
@@ -419,5 +420,10 @@ tile_set = SubResource("TileSet_30i71")
 [node name="TileMapLayer3" type="TileMapLayer" parent="."]
 scale = Vector2(3, 3)
 tile_set = SubResource("TileSet_25os6")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_25os6")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="body_entered" from="EndZone" to="." method="_on_end_zone_body_entered"]

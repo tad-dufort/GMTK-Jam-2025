@@ -80,3 +80,4 @@ func _on_end_zone_body_entered(body: Node2D) -> void:
 				spawngun()
 				spawngun()
 				spawn()
+				spawn()
