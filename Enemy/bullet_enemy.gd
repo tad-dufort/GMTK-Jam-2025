@@ -55,14 +55,18 @@ func _physics_process(delta:float):
 
 func _on_detection_area_body_entered(body: CharacterBody2D):
 	if body.is_in_group("Player"):
+		$anchor.target = body
 		chase = true
 		target = body
+		
 	
 
 func _on_detection_area_body_exited(body: CharacterBody2D) -> void:
 	if body.is_in_group("Player"):
+		$anchor.target = null
 		chase = false
 		target = null
+		
 
 
 func _on_hurtbox_area_area_entered(area: Area2D) -> void:

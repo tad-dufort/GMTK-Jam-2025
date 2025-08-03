@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://pjtspu5eqi48"
+path="res://.godot/imported/Enemy Movement Low2.wav-d680428263c976a299505930e474bfeb.sample"
+
+[deps]
+
+source_file="res://Music + Sfx/Enemy Movement Low2.wav"
+dest_files=["res://.godot/imported/Enemy Movement Low2.wav-d680428263c976a299505930e474bfeb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

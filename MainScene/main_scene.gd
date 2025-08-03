@@ -6,11 +6,11 @@ extends Node2D
 @onready var enemy = preload("res://Enemy/Enemy.tscn")
 @onready var gunenemy = preload("res://Enemy/bullet_enemy.tscn")
 @onready var upgrade = true
-
+var finalamount = 0
 
 
 func _process(delta: float) -> void:
-	if loop == 5:
+	if loop == 5 and Globals.total <= 15:
 		loop = 0
 		upgrade = false
 	if (Globals.total % 5) == 0 and upgrade == false:
@@ -41,25 +41,29 @@ func spawngun():
 	var y = randf_range(origin.y, spawnArea.y)
 	gun.bullets = loop
 	gun.cd /= loop
+
 	gun.health += float(loop)/3
 	gun.global_position = Vector2(x,y)
 	Globals.amount += 1
 	
 
 func _ready():
-	get_node("/root/Player").global_position = $Node2D.global_position
-	spawn()
+	$Player.global_position = $Spawntile.global_position
+	spawngun()
 	Globals.despawn /= float(loop)/2
-	print_debug(Globals.despawn)
+
 
 func _on_end_zone_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") and Globals.amount == 0:
-		get_node("/root/Player").global_position.x -= 6000
+		$Player.global_position.x -= 6000
 		loop += 1
 		Globals.despawn = 15.0
 		Globals.despawn /= float(loop)/2
-
 		Globals.total += 1
+		
+		if finalamount < 5:
+			finalamount += 1
+		
 		if Globals.total < 5:
 			for i in range(0, loop):
 				spawn()
@@ -68,5 +72,10 @@ func _on_end_zone_body_entered(body: Node2D) -> void:
 				spawngun()
 		elif Globals.total >= 10 and Globals.total < 15:
 			for i in range(0, loop):
+				spawngun()
+				spawn()
+		elif Globals.total >= 15:
+			for i in range(0, finalamount):
+				spawngun()
 				spawngun()
 				spawn()

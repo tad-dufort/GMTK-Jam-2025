@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var health = 5
 var speed = 500
-
+var dead = false
 
 func _ready() -> void:
 	$AnimationPlayer.play("Down")
@@ -16,16 +16,18 @@ func _physics_process(_delta):
 
 	
 	if input_vector == Vector2.ZERO:
-		pass
+		$AudioStreamPlayer2D.stop()
 	else:
 		$AnimationTree.set("parameters/Walk/blend_position", input_vector)
-	
+		if not $AudioStreamPlayer2D.playing:
+			$AudioStreamPlayer2D.play()
+		
 	velocity = input_vector * speed
 	move_and_slide()
 	
-	if health <= 0:
+	if health <= 0 and dead == false:
 		get_tree().change_scene_to_file("res://Menus/died.tscn")
-
+		dead = true
 
 
 

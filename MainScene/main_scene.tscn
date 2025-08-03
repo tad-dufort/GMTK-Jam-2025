@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://drwlta6k12k0s"]
+[gd_scene load_steps=18 format=3 uid="uid://drwlta6k12k0s"]
 
 [ext_resource type="Script" uid="uid://cd8vvplqh10v4" path="res://MainScene/main_scene.gd" id="1_25u3m"]
 [ext_resource type="Texture2D" uid="uid://bjah2cj1p0aq2" path="res://Art/icon.svg" id="2_qjv46"]
+[ext_resource type="PackedScene" uid="uid://b7cmflembhjq7" path="res://Player/Player.tscn" id="3_25u3m"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_qjv46"]
 vertices = PackedVector2Array(3339.2, -1088.5, 3342.8, -257.5, 2628, -257.5, 47.5, -1088.5, 2628, -256, 2552.5, -256, 47.5, 334, 2552.5, 1277.5, -2352.5, 1277.5, -47.5, 334, -2352.5, -162.5, -2352, -162.5, -47.5, -1088.5, -2352, -257.5, -3099.5, -257.5, -3099.5, -1087.5, -2352, -1087.5, -2352, -1088.5)
@@ -51,6 +52,9 @@ glow_blend_mode = 0
 
 [node name="Main scene" type="Node2D"]
 script = ExtResource("1_25u3m")
+
+[node name="Player" parent="." instance=ExtResource("3_25u3m")]
+position = Vector2(-2699, -680)
 
 [node name="NavigationArea" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_qjv46")
@@ -115,8 +119,8 @@ disabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_25u3m")
 
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2(-2692, -673)
+[node name="Spawntile" type="Node2D" parent="."]
+position = Vector2(-2718, -683)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.999999, -422)
